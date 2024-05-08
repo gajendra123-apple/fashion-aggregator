@@ -15,6 +15,7 @@ gem 'dotenv-rails'
 gem 'active_model_serializers'
 gem 'byebug'
 gem "rack-cors"
+gem 'activestorage'
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
 
