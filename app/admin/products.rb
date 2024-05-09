@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :name, :description, :category_type, :price, :image_url, :stock_quantity
+  permit_params :name, :description, :category_id, :subcategory_id, :price, :image_url, :stock_quantity
 
 
   index do
@@ -37,8 +37,8 @@ ActiveAdmin.register Product do
       f.input :description
       f.input :price
       #f.input :category, as: :select, collection: Category.all.map { |c| [c.name, c.id] }
-      f.input :category, as: :select, collection: Category.category_types.keys.map { |type| [type.titleize, type] }
-
+      f.input :category_id, as: :select, collection: Category.all.map { |f| [f.name.humanize, f.id] }
+      f.input :subcategory_id, as: :select, collection: Subcategory.all.map { |f| [f.name.humanize, f.id] }
       f.input :image_url, as: :file
       f.input :stock_quantity
     end
