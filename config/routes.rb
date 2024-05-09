@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :subcategories
+  resources :products
   post '/users/sign_up', to: 'users#sign_up'
   post '/users/login', to: 'users#login'
   post 'users/forgot_password', to: 'users#forgot_password'
