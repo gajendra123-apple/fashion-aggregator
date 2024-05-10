@@ -11,7 +11,7 @@ ActiveAdmin.register Product do
     end
     column :image do |product|
       if product.image.attached?
-        image_tag url_for(product.image)
+       image_tag(product.image, width: 100, height: 100)
       else
         "No image attached"
       end
@@ -56,7 +56,7 @@ ActiveAdmin.register Product do
         product.category.name if product.category
       end
       row :image do |product|
-         image_tag url_for(product&.image)
+       image_tag(product.image, width: 100, height: 100)
       end
       row :color
       row :size
@@ -66,11 +66,11 @@ ActiveAdmin.register Product do
       row :updated_at
     end
   end
+  
   controller do
     def create
       @product = Product.new(permitted_params[:product])
       if @product.save
-        # Generate URL for the uploaded image
         @product.update(image_url: url_for(@product.image)) if @product.image.attached?
         redirect_to admin_product_path(@product), notice: 'Product was successfully created.'
       else
