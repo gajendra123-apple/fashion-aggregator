@@ -56,7 +56,7 @@ ActiveAdmin.register Product do
         product.category.name if product.category
       end
       row :image do |product|
-         image_tag(product&.image, width: 100 , height: 100)
+       image_tag(product.image, width: 100, height: 100)
       end
       row :color
       row :size
