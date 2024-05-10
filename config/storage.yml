@@ -11,8 +11,9 @@ amazon:
   service: S3
   access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
   secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
-  region: "ap-south-1"
-  bucket: "my.ruby.s3.bucket"
+  region: ap-south-1
+  bucket: my.ruby.s3.bucket
+  public: true
   
 # Remember not to checkin your GCS keyfile to a repository
 # google:
