@@ -1,30 +1,12 @@
 class ApplicationController < ActionController::Base
     skip_before_action :verify_authenticity_token
     # protect_from_forgery with: :exception
-    # include Authentication
-    # protect_from_forgery with: :exception
-    SECRET = ENV['SECRET_KEY'] # Rails.application.secret_key_base this#
-    def encode_data(payload)
-        token = JWT.encode payload, SECRET, "HS256"
-        return token
-    end
-    
-    def decode_data(token)
-        begin
-            data = JWT.decode token, SECRET, true, { algorithm: "HS256" }
-            return data
-        rescue => e
-            puts e
-        end
-    end
+    include Authentication
+    before_action :set_current_user
 
     private
 
-    def current_user
-        token = request.headers['Authorization']&.split(' ')&.last
-        return unless token
-        data = decode_data(token)
-        user_id = data[0]['user_data']
-        User.find_by(id: user_id) if user_id.present?
+    def set_current_user
+        @current_user = current_user
     end
 end
