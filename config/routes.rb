@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   patch 'users/reset_password/:token', to: 'users#reset_password', as: 'reset_password_token'
   post '/cart_items/add_product', to: 'cart_items#add_product'
   delete '/cart_items/remove_product', to: 'cart_items#remove_product'
+
+  resources :favorites
 end
