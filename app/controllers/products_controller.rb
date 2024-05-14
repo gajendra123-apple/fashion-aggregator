@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
 
+  include Authentication
     def index
         page_number = params[:page]
         if page_number.present?
