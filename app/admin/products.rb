@@ -56,7 +56,11 @@ ActiveAdmin.register Product do
         product.category.name if product.category
       end
       row :image do |product|
-       image_tag(product.image, width: 100, height: 100)
+        if product.image.attached?
+         image_tag(product.image, width: 100 , height: 100)
+        else
+         "No image attached"
+        end
       end
       row :color
       row :size
