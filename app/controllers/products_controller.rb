@@ -1,6 +1,4 @@
 class ProductsController < ApplicationController
-    # before_action :authenticate_user, only: [:index]
-    before_action :authenticate_user
 
     def index
         page_number = params[:page]
@@ -35,11 +33,5 @@ class ProductsController < ApplicationController
     def filter_products
         
     end
-
-    private
-
-    def authenticate_user
-        @current_user = current_user
-        render json: { error: 'Unauthorized user' }, status: :unauthorized unless @current_user
-    end
+    
 end
