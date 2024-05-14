@@ -16,6 +16,7 @@ gem 'byebug'
 gem "rack-cors"
 gem 'activestorage'
 gem 'active_model_serializers'
+gem 'kaminari'
 # gem 'aws-sdk-rails'
 gem "aws-sdk-s3", require: false
 # Use sqlite3 as the database for Active Record

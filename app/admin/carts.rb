@@ -1,4 +1,4 @@
-ActiveAdmin.register ShoppingCart do
+ActiveAdmin.register Cart do
   permit_params :quantity, :date_added
 
   index do

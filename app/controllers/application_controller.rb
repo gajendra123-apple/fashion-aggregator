@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
-    protect_from_forgery with: :exception
+    skip_before_action :verify_authenticity_token
+    # protect_from_forgery with: :exception
+    # include Authentication
+    # protect_from_forgery with: :exception
     SECRET = ENV['SECRET_KEY'] # Rails.application.secret_key_base this#
     def encode_data(payload)
         token = JWT.encode payload, SECRET, "HS256"

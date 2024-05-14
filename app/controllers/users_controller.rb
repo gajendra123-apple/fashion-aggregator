@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-    skip_before_action :verify_authenticity_token
-    
     def sign_up
       begin
         @user = User.new(user_params)
@@ -86,4 +84,4 @@ class UsersController < ApplicationController
     def faliour_respone(message, status = :unprocessable_entity)
       render json: { error: message }, status: status
     end
-  end  
+end  
