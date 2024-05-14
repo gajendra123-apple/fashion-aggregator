@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include Authentication
+  # skip_before_action :current_user, only: [:login]
     def sign_up
       begin
         @user = User.new(user_params)
@@ -11,7 +13,7 @@ class UsersController < ApplicationController
         faliour_respone(e.message)
       end
     end
-  
+
     def login
       begin
         user = User.find_by(email: params[:user][:email])
