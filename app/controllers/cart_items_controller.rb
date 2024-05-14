@@ -15,7 +15,6 @@ class CartItemsController < ApplicationController
     end
 
     def remove_product
-      byebug
       @cart = current_user.cart
       @cart_item = @cart.cart_items.find_by(product_id: params[:product_id])
     
