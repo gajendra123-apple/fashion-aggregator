@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :name, :description, :category_id, :subcategory_id, :price, :image, :stock_quantity, :color, :size
+  permit_params :name, :description, :category_id, :subcategory_id, :price, :image,  :stock_quantity, :color, :size
 
   index do
     selectable_column
@@ -42,7 +42,8 @@ ActiveAdmin.register Product do
       f.input :subcategory_id, as: :select, collection: Subcategory.all.map { |f| [f.name.humanize, f.id] }
       f.input :image, as: :file
       f.input :color
-      f.input :size
+      f.input :size, as: :select
+      # f.input :brand_id, as: :select, collection: Brand.all.map { |brand| [brand.name, brand.id] }
       f.input :stock_quantity
     end
     f.actions
