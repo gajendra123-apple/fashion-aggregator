@@ -6,17 +6,16 @@ module Authentication
     end
     
     def current_user
-        byebug
-        begin
-            token = request.headers[:token]&.split(' ')&.last
-            return unless token
-            data = decode_data(token)
-            user_id = data[0]['user_data']
-            @current_user = User.find_by(id: user_id) if user_id.present?
-        rescue StandardError => e  
-            Rails.logger.error("An error occurred in current_user method: #{e.message}") 
-            @current_user = nil      
-        end
+      begin
+        token = request.headers[:token]&.split(' ')&.last
+        return unless token
+        data = decode_data(token)
+        user_id = data[0]['user_data']
+        @current_user = User.find_by(id: user_id) if user_id.present?
+      rescue StandardError => e  
+        Rails.logger.error("An error occurred in current_user method: #{e.message}") 
+        @current_user = nil      
+      end
     end
 
     def encode_data(payload)
