@@ -14,14 +14,24 @@ class ApplicationController < ActionController::Base
             puts e
         end
     end
+  
+    skip_before_action :verify_authenticity_token
+    # protect_from_forgery with: :exception
+    # include Authentication
+    # before_action :set_current_user
 
-    private
+    # include Authentication
+    # skip_before_action :current_user, only: [:login]
 
-    def current_user
-        token = request.headers['Authorization']&.split(' ')&.last
-        return unless token
-        data = decode_data(token)
-        user_id = data[0]['user_data']
-        User.find_by(id: user_id) if user_id.present?
-    end
+
+    # before_action :set_current_user
+
+    # private
+    
+    # def set_current_user
+    #     @current_user = current_user
+    #     unless @current_user
+    #         render json: { error: 'Unauthorized user' }, status: :unauthorized
+    #     end
+    # end
 end

@@ -3,8 +3,9 @@ class User < ApplicationRecord
     # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
     # devise :database_authenticatable, :recoverable, :rememberable, :validatable
     # has_secure_password
-    has_many :products, dependent: :destroy
-    has_one :shoppingcart, dependent: :destroy
+    has_many :products
+    has_many :favorites
+    has_one :cart
     has_many :reviews, dependent: :destroy
     has_many :orders
     has_many :payments, dependent: :destroy

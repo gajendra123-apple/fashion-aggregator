@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-    skip_before_action :verify_authenticity_token
-    
+  include Authentication
+  # skip_before_action :current_user, only: [:login]
     def sign_up
       begin
         @user = User.new(user_params)
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         faliour_respone(e.message)
       end
     end
-  
+
     def login
       begin
         user = User.find_by(email: params[:user][:email])
@@ -86,4 +86,4 @@ class UsersController < ApplicationController
     def faliour_respone(message, status = :unprocessable_entity)
       render json: { error: message }, status: status
     end
-  end  
+end  

@@ -1,7 +1,6 @@
 class OrderItem < ApplicationRecord
-    # belongs_to :product
-    # belongs_to :shoppingcart
-    # belongs_to :order
+    belongs_to :product
+    belongs_to :order
 
   validates :quantity,  presence: true
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 1 }

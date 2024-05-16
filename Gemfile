@@ -16,6 +16,7 @@ gem 'byebug'
 gem "rack-cors"
 gem 'activestorage'
 gem 'active_model_serializers'
+gem 'kaminari'
 # gem 'aws-sdk-rails'
 gem "aws-sdk-s3", require: false
 # Use sqlite3 as the database for Active Record
@@ -57,6 +58,13 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug"
+  gem 'rspec-rails'
+  # gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'faker'
+  gem 'simplecov', require: false
 end
 
 group :development do
