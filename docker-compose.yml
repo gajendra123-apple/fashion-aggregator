@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.8'
 
 services:
   app:
@@ -8,9 +8,9 @@ services:
     ports:
       - "3000:3000"
     environment:
-      RAILS_ENV: production
+      RAILS_ENV: development
       BUNDLE_DEPLOYMENT: "1"
       BUNDLE_WITHOUT: development
     volumes:
       - .:/rails
-    command: "./bin/rails server"
+    command: bundle exec rails db:migrate && bundle exec rails db:seed && bundle exec rails s -b '0.0.0.0' RAILS_ENV=development
