@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.1.2"
+ruby "3.0.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
@@ -77,7 +77,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
-  gem "error_highlight", ">= 0.4.0"
+  # gem "error_highlight", ">= 0.4.0"
 end
 
 group :test do
@@ -85,3 +85,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
