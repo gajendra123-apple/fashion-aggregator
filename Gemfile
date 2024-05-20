@@ -58,6 +58,12 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug"
+  gem 'rspec-rails'
+  # gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
+  gem 'database_cleaner'
+  gem 'faker'
+  gem 'simplecov', require: false
 end
 
 group :development do
@@ -70,7 +76,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
-  gem "error_highlight", ">= 0.4.0"
+  # gem "error_highlight", ">= 0.4.0"
 end
 
 group :test do
@@ -78,3 +84,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+

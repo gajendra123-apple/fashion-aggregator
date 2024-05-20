@@ -26,5 +26,6 @@ Rails.application.routes.draw do
   post '/cart_items/add_product', to: 'cart_items#add_product'
   delete '/cart_items/remove_product', to: 'cart_items#remove_product'
   get '/products/sort_product', to: 'products#sort_product'
+  post '/reviews/add_reviews', to: 'reviews#add_reviews'
   resources :favorites
 end
