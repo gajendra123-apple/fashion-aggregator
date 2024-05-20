@@ -1,17 +1,18 @@
 class ProductsController < ApplicationController
-
   include Authentication
-    def index
-        page_number = params[:page]
-        if page_number.present?
-          @products = Product.page(page_number).per(4)
-          render json: @products, each_serializer: ProductSerializer
-        else
-          @products = Product.all
-          render json: @products, each_serializer: ProductSerializer
-        end
-    end
+   before_action :authenticate_user, only:[:index,  :sort_product]
 
+    def index
+      page_number = params[:page]
+      if page_number.present?
+        @products = Product.page(page_number).per(4)
+        render json: @products, each_serializer: ProductSerializer
+      else
+        @products = Product.all
+        render json: @products, each_serializer: ProductSerializer
+      end
+    end
+    
     def sort_product
         sort_param = params[:type]
         case sort_param
@@ -34,5 +35,4 @@ class ProductsController < ApplicationController
     def filter_products
         
     end
-    
 end
