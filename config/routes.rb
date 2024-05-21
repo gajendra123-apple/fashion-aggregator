@@ -28,4 +28,14 @@ Rails.application.routes.draw do
   get '/products/sort_product', to: 'products#sort_product'
   post '/reviews/add_reviews', to: 'reviews#add_reviews'
   resources :favorites
+  resources :brands
+
+  resource :carts, only: [:show] do
+    post 'add_product'
+    delete 'remove_product'
+    post 'apply_coupon'
+    post 'checkout'
+  end
+  
+  resources :orders, only: [:index, :show]
 end
