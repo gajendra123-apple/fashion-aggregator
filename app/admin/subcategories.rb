@@ -19,7 +19,7 @@ ActiveAdmin.register Subcategory do
     form do |f|
       f.inputs do
         f.input :name
-        f.input :category_id, as: :select, collection: Category.all.map { |f| [f.name.humanize, f.id] }
+        f.input :category_id, as: :select, include_blank: "please select category",collection: Category.all.map { |f| [f.name.humanize, f.id] }
       end
       f.actions
     end
