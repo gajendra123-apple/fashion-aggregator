@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
     include Authentication
     before_action :current_user
-    before_action :find_product, only: :add_reviews
+    before_action :find_product, only:[:add_reviews, :customer_review]
 
     def add_reviews
       @review = @product.reviews.new(review_params.merge(user_id: current_user.id))
@@ -10,6 +10,11 @@ class ReviewsController < ApplicationController
       else
         render json: { errors: @review.errors.full_messages }, status: :unprocessable_entity
       end
+    end
+
+    def customer_review
+      @review =Review.order(rating: :desc)
+      render json: @review, each_serializer: ReviewSerializer, status: :ok
     end
   
     private
@@ -25,4 +30,3 @@ class ReviewsController < ApplicationController
       params.require(:review).permit(:rating, :review_text, :product_id)
     end
 end
-  

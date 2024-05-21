@@ -1,6 +1,6 @@
 class Category < ApplicationRecord
-  has_many :subcategories, class_name: "Category", foreign_key: "parent_category", dependent: :destroy
-  has_many :products
+  has_many :subcategories, dependent: :destroy #class_name: "Category", foreign_key: "parent_category", dependent: :destroy
+  has_many :products, dependent: :destroy
   enum category_type: { Men:"men", Women: "women", Kids: "kids" }
   validates :name,  presence: true
 

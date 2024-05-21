@@ -4,5 +4,5 @@ class Subcategory < ApplicationRecord
         ["category_id", "id", "id_value", "name"]
     end
     belongs_to :category
-    has_many :products
+    has_many :products, dependent: :destroy
 end 

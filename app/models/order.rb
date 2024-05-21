@@ -1,8 +1,8 @@
 class Order < ApplicationRecord
   enum status: { pending: "pending", shipped: "shipped", delivered: "delivered" }
   belongs_to :user
-  has_many :order_items
-  has_many :products, through: :order_items
+  has_many :order_items, dependent: :destroy
+  has_many :products, through: :order_items, dependent: :destroy
  
   validates :order_date, :shipping_address, :billing_address, presence: true
   validates :total_amount, presence: true, numericality: { greater_than_or_equal_to: 1 }
