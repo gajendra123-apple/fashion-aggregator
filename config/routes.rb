@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :products do
     collection do
       get 'sort_product'
+      get 'sort_by_price'
+      get '/products/sort_product'
     end
   end
   post '/users/sign_up', to: 'users#sign_up'
@@ -25,7 +27,14 @@ Rails.application.routes.draw do
   patch 'users/reset_password/:token', to: 'users#reset_password', as: 'reset_password_token'
   post '/cart_items/add_product', to: 'cart_items#add_product'
   delete '/cart_items/remove_product', to: 'cart_items#remove_product'
-  get '/products/sort_product', to: 'products#sort_product'
+  # get '/products/sort_product', to: 'products#sort_product'
   post '/reviews/add_reviews', to: 'reviews#add_reviews'
+  # get '/reviews/customer_review', to: 'reviews#customer_review'
   resources :favorites
+
+  resources :reviews do
+    collection do
+      get 'customer_review'
+    end
+  end
 end

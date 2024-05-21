@@ -3,8 +3,7 @@ class SubCategoriesController < ApplicationController
     
     def index
       @subcategories = @category.subcategories
-      render json: {subcategories: @subcategories}
-      # render json: @subcategories, each_serializer: SubcategorySerializer
+      render json: @subcategories, each_serializer: SubcategorySerializer, status: :ok
     end
     
     private
