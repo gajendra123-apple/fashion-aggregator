@@ -31,7 +31,17 @@ Rails.application.routes.draw do
   post '/reviews/add_reviews', to: 'reviews#add_reviews'
   # get '/reviews/customer_review', to: 'reviews#customer_review'
   resources :favorites
+  resources :brands
 
+  resource :carts, only: [:show] do
+    post 'add_product'
+    delete 'remove_product'
+    post 'apply_coupon'
+    post 'checkout'
+  end
+  
+  resources :orders, only: [:index, :show]
+  
   resources :reviews do
     collection do
       get 'customer_review'
