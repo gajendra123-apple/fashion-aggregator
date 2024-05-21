@@ -8,7 +8,7 @@ ActiveAdmin.register Product do
     column :name
     column :description
     column :category do |product|
-      product&.category&.name
+      product&.category&.category_type
     end
     column :image do |product|
       if product.image.attached?
@@ -40,7 +40,7 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :description
       f.input :price
-      f.input :category_id, as: :select, include_blank: "please select category", collection: Category.all.map { |f| [f.name.humanize, f.id] }
+      f.input :category_id, as: :select, include_blank: "please select category", collection: Category.all.map { |f| [f.category_type.humanize, f.id] }
       f.input :subcategory_id, as: :select, include_blank: "please select subcategory", collection: Subcategory.all.map { |f| [f.name.humanize, f.id] }
       f.input :image, as: :file
       f.input :color
@@ -56,7 +56,7 @@ ActiveAdmin.register Product do
       row :name
       row :description
       row :category do |product|
-        product.category.name if product.category
+        product.category.category_type if product.category
       end
       row :image do |product|
         if product.image.attached?
