@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
     include Authentication
-    before_action :current_user
+    before_action :authenticate_user
     before_action :find_product, only:[:add_reviews, :customer_review]
 
     def add_reviews

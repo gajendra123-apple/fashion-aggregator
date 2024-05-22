@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   # resources :categories
   resources :categories do
     collection do
-      # resources :sub_categories, only: [:index]
      get 'filter_product_by_category'
     end
   end
@@ -20,8 +19,17 @@ Rails.application.routes.draw do
   resources :products do
     collection do
       get 'sort_product'
+      get 'filter_product_by_size'
+      post 'filter_product_by_brand_names'
+      get 'filter_product_by_colors'
+      get 'list_of_product_brand_names'
+      get 'list_of_product_colors'
+      get 'list_of_product_sizes'
+      get 'list_of_product_category'
+      get 'filter_product_by_category'
     end
   end
+
   post '/users/sign_up', to: 'users#sign_up'
   post '/users/login', to: 'users#login'
   post 'users/forgot_password', to: 'users#forgot_password'
