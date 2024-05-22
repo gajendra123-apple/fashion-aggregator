@@ -43,9 +43,9 @@ ActiveAdmin.register Product do
       f.input :category_id, as: :select, include_blank: "please select category", collection: Category.all.map { |f| [f.category_type.humanize, f.id] }
       f.input :subcategory_id, as: :select, include_blank: "please select subcategory", collection: Subcategory.all.map { |f| [f.name.humanize, f.id] }
       f.input :image, as: :file
-      f.input :color
+        
       f.input :size, as: :select, include_blank: "please select size"
-      f.input :brand_name, as: :select, include_blank: "please select size", collection: Brand.all.map { |f| [f.name.humanize] }
+      f.input :brand_name, as: :select, include_blank: "please select brand name", collection: Brand.all.map { |f| [f.name.humanize] }
       f.input :stock_quantity
     end
     f.actions
