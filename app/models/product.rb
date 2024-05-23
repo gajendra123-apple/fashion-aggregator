@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
-  has_many :cart_items
-  has_many :carts, through: :cart_items
+  has_many :cart_items, dependent: :destroy
+  has_many :carts, through: :cart_items, dependent: :destroy
   belongs_to :category
   # belongs_to :user, optional: true
   belongs_to :subcategory
