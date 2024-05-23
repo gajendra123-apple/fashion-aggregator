@@ -13,6 +13,17 @@ class CartsController < ApplicationController
       render json: { message: "Product added to cart successfully", cart: @cart }, status: :ok
     else
       render json: @cart.errors, status: :unprocessable_entity
+    product_id = params[:product_id].to_i
+    quantity = params[:quantity].to_i
+    if @cart.cart_items.exists?(product_id: product_id)
+      render json: { message: "This product is already in the cart. Please select another one." }, status: :unprocessable_entity
+    else
+      @cart.add_product(product_id, quantity)
+      if @cart.save
+        render json: { message: "Product added to cart successfully", cart: @cart }, status: :ok
+      else
+        render json: @cart.errors, status: :unprocessable_entity
+      end
     end
   end
 
@@ -22,14 +33,6 @@ class CartsController < ApplicationController
       render json: { message: "Product has been removed from the cart" }, status: :ok
     else
       render json: { error: "Product not found in the cart" }, status: :not_found
-    end
-  end
-
-  def apply_coupon
-    if @cart.apply_coupon(params[:coupon_code])
-      render json: { message: "Coupon applied successfully", cart: @cart }, status: :ok
-    else
-      render json: { error: "Invalid coupon code or unable to apply coupon" }, status: :unprocessable_entity
     end
   end
 

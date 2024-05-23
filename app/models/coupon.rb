@@ -1,15 +1,13 @@
 class Coupon < ApplicationRecord
-    has_many :carts
-    validates :code, presence: true, uniqueness: true
-    validates :discount_amount, presence: true
+   has_many :carts, dependent: :destroy
+   validates :code, presence: true, uniqueness: true
+   validates :discount_percentage, presence: true
 
     def apply_discount(original_price)
-        if discount_amount.present?
-          original_price * ((100 - discount_percentage) / 100.0)
-        elsif discount_amount.present?
-          [original_price - discount_amount, 0].max
-        else
-          original_price
-        end
+      if discount_percentage.present? && original_price.present?
+        original_price * ((100 - discount_percentage) / 100.0)
+      else
+        original_price
+      end
     end
 end

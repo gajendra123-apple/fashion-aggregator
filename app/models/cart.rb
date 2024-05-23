@@ -1,7 +1,7 @@
 class Cart < ApplicationRecord
   belongs_to :user
   has_many :cart_items, dependent: :destroy
-  has_many :products, through: :cart_items
+  has_many :products, dependent: :destroy
   belongs_to :coupon, optional: true
   
   def add_product(product_id, quantity = 1)
@@ -14,24 +14,7 @@ class Cart < ApplicationRecord
     current_item = cart_items.find_by(product_id: product_id)
     current_item&.destroy
   end
-
-  # def total_price
-  #   cart_items.sum { |item| item.price * item.quantity }
-  # end
-
-  # def apply_coupon(coupon_code)
-  #   byebug
-  #   coupon = Coupon.find_by(code: coupon_code)
-  #   if coupon && coupon.active?
-  #     self.discount = coupon.discount_amount
-  #     save
-  #   else
-  #     errors.add(:base, "Invalid or expired coupon code")
-  #     false
-  #   end
-  # end
-  
-  
+   
   def total_price
     cart_items.sum { |item| item.price * item.quantity }
   end
