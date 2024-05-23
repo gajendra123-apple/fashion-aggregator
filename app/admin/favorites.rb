@@ -18,14 +18,14 @@ ActiveAdmin.register Favorite do
   filter :user_id
   filter :created_at
   
-  form do |f|
-    f.inputs do
-      f.input :is_favorite, default: false
-      f.input :product, as: :select, include_blank: "please select product"
-      f.input :user, as: :select, include_blank: "please select user"
-    end
-    f.actions
-  end
+  # form do |f|
+  #   f.inputs do
+  #     f.input :is_favorite, default: false
+  #     f.input :product, as: :select, include_blank: "please select product"
+  #     f.input :user, as: :select, include_blank: "please select user"
+  #   end
+  #   f.actions
+  # end
 
   show do 
     attributes_table do
