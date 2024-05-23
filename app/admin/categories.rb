@@ -19,4 +19,13 @@ ActiveAdmin.register Category do
     end
     f.actions
   end
+
+  show do 
+    attributes_table do
+      row :category_type
+      row :created_at
+      row :created_at
+      row :updated_at
+    end
+  end
 end
