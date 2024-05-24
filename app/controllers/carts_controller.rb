@@ -13,20 +13,22 @@ class CartsController < ApplicationController
       render json: { message: "Product added to cart successfully", cart: @cart }, status: :ok
     else
       render json: @cart.errors, status: :unprocessable_entity
-    product_id = params[:product_id].to_i
-    quantity = params[:quantity].to_i
-    if @cart.cart_items.exists?(product_id: product_id)
-      render json: { message: "This product is already in the cart. Please select another one." }, status: :unprocessable_entity
-    else
-      @cart.add_product(product_id, quantity)
-      if @cart.save
-        render json: { message: "Product added to cart successfully", cart: @cart }, status: :ok
+      product_id = params[:product_id].to_i
+      quantity = params[:quantity].to_i
+      if @cart.cart_items.exists?(product_id: product_id)
+        render json: { message: "This product is already in the cart. Please select another one." }, status: :unprocessable_entity
       else
-        render json: @cart.errors, status: :unprocessable_entity
+        @cart.add_product(product_id, quantity)
+        if @cart.save
+          render json: { message: "Product added to cart successfully", cart: @cart }, status: :ok
+        else
+          
+          render json: @cart.errors, status: :unprocessable_entity
+        end
       end
     end
   end
-
+  
   def remove_product
     product_removed = @cart.remove_product(params[:product_id])
     if product_removed
