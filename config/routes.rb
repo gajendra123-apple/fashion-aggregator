@@ -48,8 +48,7 @@ Rails.application.routes.draw do
     post 'checkout'
   end
   
-  resources :orders, only: [:index, :show]
-  
+  resources :orders
   resources :reviews do
     collection do
       get 'customer_review'
