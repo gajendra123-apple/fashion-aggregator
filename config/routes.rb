@@ -55,4 +55,11 @@ Rails.application.routes.draw do
       get 'customer_review'
     end
   end
+
+  resources :razorpays, only: [:new, :create] do
+    collection do
+     post '/create_razorpay_order', to: 'razorpays#create_razorpay_order'
+     post '/capture_payment', to: 'razorpays#capture_payment'
+    end
+  end
 end

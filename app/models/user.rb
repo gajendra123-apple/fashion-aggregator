@@ -9,6 +9,7 @@ class User < ApplicationRecord
     has_many :reviews, dependent: :destroy
     has_many :orders, dependent: :destroy
     has_many :payments, dependent: :destroy
+    has_many :razorpay_orders, dependent: :destroy
   
     validates :name, presence: true, uniqueness: { case_sensitive: false }
   
