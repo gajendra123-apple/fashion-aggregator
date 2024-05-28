@@ -6,6 +6,8 @@ ActiveAdmin.register Category do
     id_column
     column :category_type
     column :created_at
+    column :updated_at
+    
 
     actions
   end

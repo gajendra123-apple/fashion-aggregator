@@ -23,6 +23,7 @@ ActiveAdmin.register Product do
     column :size
     column :stock_quantity
     column :created_at
+    column :updated_at
 
     actions
   end
