@@ -11,6 +11,7 @@ ActiveAdmin.register Order do
     column :status 
     column :user_id
     column :created_at
+    column :updated_at
     actions
   end
 

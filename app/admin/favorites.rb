@@ -9,6 +9,7 @@ ActiveAdmin.register Favorite do
     column :user_id
     column :order_id
     column :created_at
+    column :updated_at
 
     actions
   end

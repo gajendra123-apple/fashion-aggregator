@@ -8,6 +8,7 @@ ActiveAdmin.register Payment do
     column :amount
     column :payment_method
     column :created_at
+    column :updated_at
 
     actions
   end

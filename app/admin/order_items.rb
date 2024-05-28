@@ -11,6 +11,7 @@ ActiveAdmin.register OrderItem do
     column :product_id
     column :shoppingcart_id
     column :created_at
+    column :updated_at
 
     actions
   end

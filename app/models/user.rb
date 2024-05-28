@@ -11,10 +11,15 @@ class User < ApplicationRecord
     has_many :payments, dependent: :destroy
     has_many :razorpay_orders, dependent: :destroy
   
-    validates :name, presence: true, uniqueness: { case_sensitive: false }
-  
+    validates :email, :uniqueness => { :case_sensitive => false }
     validate :password_complexity
     # validate :custom_email_validation
+    before_validation :downcase_email
+
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "email", "id", "id_value", "name", "password", "reset_password_sent_at", "reset_password_token", "updated_at"]
+  end
   
     def generate_password_token!
       self.reset_password_token = generate_token
@@ -39,6 +44,10 @@ class User < ApplicationRecord
     end
   
     private
+
+  def downcase_email
+   self.email = email.downcase if email.present?
+  end
   
     def password_complexity
       return if password.blank? || password.match?(/(?=.*[A-Z])(?=.*[a-z])(?=.*[\d])(?=.*[[:^alnum:]])/)
