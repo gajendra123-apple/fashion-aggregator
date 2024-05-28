@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  include Authentication
     before_action :authenticate_user, only:[:index, :filter_product_by_category]
     before_action :find_product, only:[:filter_product_by_category]
 
