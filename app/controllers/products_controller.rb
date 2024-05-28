@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
       :filter_product_by_colors, :filter_product_by_category,:list_of_product_brand_names, :list_of_product_colors, :list_of_product_sizes, :list_of_product_category]
 
   def index
-    page_number = params[:page]
+    page_number = params[:page].to_i
     if page_number.present?
       @products = Product.page(page_number).per(4)
       render json: @products, each_serializer: ProductSerializer
