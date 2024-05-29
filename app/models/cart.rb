@@ -3,7 +3,7 @@ class Cart < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :products, through: :cart_items
   has_many :products, dependent: :destroy
-  has_many :orders
+  has_many :orders, dependent: destroy
 
 
   # def total_price_without_coupon
