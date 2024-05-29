@@ -21,10 +21,11 @@ module Authentication
   end
 
   def encode_data(payload)
+    payload[:exp] = 24.hours.from_now.to_i # Set expiry time to 24 hours from now
     token = JWT.encode payload, secret_key, "HS256"
     return token
   end
-
+  
   def decode_data(token)
     begin
       data = JWT.decode token, secret_key, true, { algorithm: "HS256" }
