@@ -10,6 +10,7 @@ ActiveAdmin.register Promotion do
     column :start_date
     column :end_date
     column :created_at
+    column :updated_at
 
     actions
   end

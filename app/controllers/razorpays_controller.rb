@@ -15,10 +15,9 @@ class RazorpaysController < ApplicationController
     order = Razorpay::Order.create(para_attr) unless Rails.env.test?
     if order&.status == 'created'
     	razorpay_order = create_order(order)
-	    render json: razorpay_order, status: 201
-      # render json: RazorpayOrderSerializer.new(razorpay_order), status: 201
+      render json: RazorpayOrderSerializer.new(razorpay_order).as_json, status: 201
     else
-    	render json: {message: "Faild to create order! please retry"}
+    	render json: {message: "Faild to create order! please retry"}, status: :unprocessable_entity
     end 
   end
 

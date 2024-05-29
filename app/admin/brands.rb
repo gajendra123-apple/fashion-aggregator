@@ -4,6 +4,8 @@ ActiveAdmin.register Brand do
     selectable_column
     id_column
     column :name
+    column :created_at
+    column :updated_at
     actions
   end
 

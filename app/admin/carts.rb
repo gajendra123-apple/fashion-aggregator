@@ -7,6 +7,7 @@ ActiveAdmin.register Cart do
     column :quantity
     column :date_added
     column :created_at
+    column :updated_at
 
     actions
   end
