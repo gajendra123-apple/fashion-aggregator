@@ -7,4 +7,10 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+# db/seeds.rb
+
+AdminUser.find_or_create_by(email: 'admin@example.com') do |user|
+    user.password = 'password'
+    user.password_confirmation = 'password'
+end  
