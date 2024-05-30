@@ -4,7 +4,7 @@ class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :add_product, :remove_product, :apply_coupon]
 
   def show
-    @cart.recalculate_total_with_coupon
+    @cart
     render json: @cart, serializer: CartSerializer, status: :ok
   end
 
@@ -48,7 +48,7 @@ class CartsController < ApplicationController
   end
   
   private
-
+  
   def authenticate_user!
     unless current_user
       render json: { error: 'Unauthorized, please login' }, status: :unauthorized
@@ -59,7 +59,7 @@ class CartsController < ApplicationController
     @cart = current_user.cart || current_user.create_cart
   end
 
-  def recalculate_total_with_coupon
-    total_without_coupon = @cart.cart_items.joins(:product).sum('cart_items.quantity * products.price')
-  end
+  # def recalculate_total_with_coupon
+  #   total_without_coupon = @cart.cart_items.joins(:product).sum('cart_items.quantity * products.price')
+  # end
 end
