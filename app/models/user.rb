@@ -8,6 +8,7 @@ class User < ApplicationRecord
     has_one :cart, dependent: :destroy
     has_many :reviews, dependent: :destroy
     has_many :orders, dependent: :destroy
+    # has_many :order_items, through: :orders
     has_many :payments, dependent: :destroy
     has_many :razorpay_orders, dependent: :destroy
   

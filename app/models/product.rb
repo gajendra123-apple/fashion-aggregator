@@ -1,12 +1,18 @@
 class Product < ApplicationRecord
   has_many :cart_items, dependent: :destroy
+  # has_many :order_items, dependent: :destroy
   has_many :carts, through: :cart_items, dependent: :destroy
+  # has_many :orders, through: :order_items, dependent: :destroy
+  has_many :orders, dependent: :destroy
+  # has_many :products, :dependent: :destroy
+  belongs_to :order, optional: true  
   belongs_to :category
   belongs_to :subcategory
   has_many :reviews, dependent: :destroy
   has_one_attached :image, dependent: :destroy
-  has_many :order_items, dependent: :destroy
-  has_many :orders, through: :order_items, dependent: :destroy
+  # has_many :order_items, dependent: :destroy
+  # has_many :orders, through: :order_items, dependent: :destroy
+  has_many :orders
   enum size: { XS:"XS", S: "S", M: "M", L: "L" , XL: "XL" }
 
   validates :name, :color, :size, :stock_quantity, :image, presence: true
@@ -15,4 +21,4 @@ class Product < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["created_at", "description", "id", "id_value", "image_url", "name", "color", "size", "price", "stock_quantity", "updated_at"]
   end
-end 
+end
