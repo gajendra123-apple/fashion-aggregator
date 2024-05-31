@@ -4,7 +4,6 @@ class Cart < ApplicationRecord
   has_many :products, through: :cart_items
   has_many :products, dependent: :destroy
   has_many :orders, dependent: :destroy
-  has_many :orders, dependent: :destroy
 
   def add_product(product_id, quantity = 1)
     current_item = cart_items.find_or_initialize_by(product_id: product_id)
