@@ -10,9 +10,9 @@ class Product < ApplicationRecord
   belongs_to :subcategory
   has_many :reviews, dependent: :destroy
   has_one_attached :image, dependent: :destroy
-  # has_many :order_items, dependent: :destroy
-  # has_many :orders, through: :order_items, dependent: :destroy
-  has_many :orders
+  has_many :order_items, dependent: :destroy
+  has_many :orders, through: :order_items, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   enum size: { XS:"XS", S: "S", M: "M", L: "L" , XL: "XL" }
 
   validates :name, :color, :size, :stock_quantity, :image, presence: true
