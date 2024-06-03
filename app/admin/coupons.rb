@@ -1,9 +1,10 @@
 ActiveAdmin.register Coupon do
-  permit_params :active, :expiration_date, :minimum_purchase_amount, :applicable_products,
-   :redemption_instructions, :discount_percentage
+  permit_params :active, :expiration_date, :minimum_purchase_amount,
+   :redemption_instructions, :discount_percentage, :coupon_name
   index do
     selectable_column
     id_column
+    column :coupon_name
     column :code
     column :active
     column :expiration_date
@@ -18,6 +19,7 @@ ActiveAdmin.register Coupon do
     actions
   end
 
+  filter :coupon_name
   filter :code
   filter :active
   filter :expiration_date
@@ -29,6 +31,7 @@ ActiveAdmin.register Coupon do
 
   form do |f|
     f.inputs do
+      f.input :coupon_name 
       f.input :discount_percentage 
       f.input :active
       f.input :expiration_date
@@ -40,6 +43,7 @@ ActiveAdmin.register Coupon do
 
   show do 
     attributes_table do
+      row :coupon_name
       row :code
       row :active
       row :expiration_date
