@@ -5,8 +5,8 @@ ActiveAdmin.register Subcategory do
     selectable_column
     id_column
     column :name
-    column "Category Id" do |product|
-      product.category_id
+    column "Category Type" do |product|
+      product&.category&.category_type
     end
     column :created_at
     column :updated_at

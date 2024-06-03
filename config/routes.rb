@@ -64,4 +64,6 @@ Rails.application.routes.draw do
      post '/capture_payment', to: 'razorpays#capture_payment'
     end
   end
+ 
+  resources :coupons
 end

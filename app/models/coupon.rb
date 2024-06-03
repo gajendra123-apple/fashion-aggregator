@@ -1,7 +1,7 @@
 class Coupon < ApplicationRecord
   
   validates :discount_percentage, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }, allow_nil: true
-  validates :expiration_date, :minimum_purchase_amount, :redemption_instructions, :presence => true
+  validates :expiration_date, :minimum_purchase_amount, :coupon_name, :redemption_instructions, :presence => true
   before_save :create_code, if: :new_record?
   after_initialize :set_default_usage_limit, if: :new_record?
 
@@ -14,7 +14,7 @@ class Coupon < ApplicationRecord
   #   end
   # end
   def self.ransackable_attributes(auth_object = nil)
-    ["active", "code", "created_at", "discount_percentage", "expiration_date", "id", "id_value", "minimum_purchase_amount", "redemption_instructions", "updated_at", "usage_count", "usage_limit"]
+    ["active", "coupon_name", "code", "created_at", "discount_percentage", "expiration_date", "id", "id_value", "minimum_purchase_amount", "redemption_instructions", "updated_at", "usage_count", "usage_limit"]
   end
 
   private

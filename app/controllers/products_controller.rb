@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   include Authentication
-    before_action :authenticate_user
+    before_action :authenticate_user, only:[:sort_product, :filter_product_by_size, :filter_product_by_brand_names,
+      :filter_product_by_colors, :filter_product_by_category,:list_of_product_brand_names, :list_of_product_colors, :list_of_product_sizes, :list_of_product_category]
     before_action :find_product, only:[:sort_product, :filter_product_by_size, :filter_product_by_brand_names,
       :filter_product_by_colors, :filter_product_by_category,:list_of_product_brand_names, :list_of_product_colors, :list_of_product_sizes, :list_of_product_category]
 
