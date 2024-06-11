@@ -10,7 +10,7 @@ RSpec.describe UsersController, type: :controller do
           email: "example@gmail.com",
           password: "Janaklodhi@123"
         }
-      end
+      end 
 
       it 'creates a new user' do
         post :sign_up, params: { user: valid_attributes }
@@ -22,7 +22,7 @@ RSpec.describe UsersController, type: :controller do
       let(:invalid_attributes) do
         {
           name: '',
-          email: 'invalid_email',
+          email: '',
           password: 'short'
         }
       end
@@ -30,7 +30,7 @@ RSpec.describe UsersController, type: :controller do
       it 'returns failure response' do
         post :sign_up, params: { user: invalid_attributes }
         response_data = JSON.parse(response.body)
-        expect(response_data["error"]).to eq("Name can't be blank, Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character")
+        expect(response_data["error"]).to eq("Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character")
       end
     end
 

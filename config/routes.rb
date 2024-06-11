@@ -11,10 +11,17 @@ Rails.application.routes.draw do
   # root "posts#index"
   # resources :sub_categories
   # resources :categories
-  resources :categories do
+  # resources :categories do
+  #   collection do
+  #    get 'filter_product_by_category'
+  #   end
+  # end
+
+  resources :categories do  
+    resources :sub_categories, only: [:index]
     collection do
-     get 'filter_product_by_category'
-    end
+      get 'filter_product_by_category'
+    end 
   end
   
   resources :products do
