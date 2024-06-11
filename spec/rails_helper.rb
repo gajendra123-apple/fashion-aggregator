@@ -44,7 +44,9 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
   config.include FactoryBot::Syntax::Methods
-
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  # If you are using Rails 5.1+ you might also need to add:
+  config.include Devise::Test::IntegrationHelpers, type: :controller
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
