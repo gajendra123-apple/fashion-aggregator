@@ -5,10 +5,8 @@ require 'devise'
 RSpec.describe Admin::ProductsController, type: :controller do
   render_views
   before(:each) do
-    byebug
     @admin = FactoryBot.create(:admin_user)
     #@admin = AdminUser.create!(email: 'test@example.com', password: 'password', password_confirmation: 'password')
-    byebug
     sign_in @admin
   end
 
