@@ -1,0 +1,38 @@
+<h3 style="font-family: 'Helvetica', sans-serif; font-size: 24px; font-weight: bold; margin-bottom: 20px; text-align: center; color: #333;">Preview</h3>
+
+<%= form_for [:admin, @prompt_manager], url: admin_prompt_managers_path, method: :post, html: { style: 'max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);' } do |f| %>
+  <!-- Hidden fields -->
+  <div style="display: none;">
+    <%= f.hidden_field :gpt_version %>
+    <%= f.hidden_field :prefix, id: "prefix-field" %>
+    <%= f.hidden_field :question, id: "question-field" %>
+    <%= f.hidden_field :prompt_template, id: "suffix-field" %>
+  </div>
+
+  <!-- ContentEditable Preview -->
+  <div contenteditable="true" id="prefix-preview" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; font-family: 'Arial', sans-serif; background-color: #fff; width: 100%; height: 50px; overflow: auto; border-radius: 5px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);">
+    <strong style="font-size: 16px;">Prefix:</strong> <%= @prompt_manager.prefix %>
+  </div>
+
+  <div contenteditable="true" id="question-preview" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; font-family: 'Arial', sans-serif; background-color: #fff; width: 100%; height: 50px; overflow: auto; border-radius: 5px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);">
+    <strong style="font-size: 16px;">Question:</strong> <%= @prompt_manager.question %>
+  </div>
+
+  <div contenteditable="true" id="suffix-preview" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; font-family: 'Arial', sans-serif; background-color: #fff; width: 100%; height: 50px; overflow: auto; border-radius: 5px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);">
+    <strong style="font-size: 16px;">Suffix:</strong> <%= @prompt_manager.prompt_template %>
+  </div>
+
+  <!-- Submit Button -->
+  <div style="text-align: center;">
+    <%= f.submit 'Create Prompt', class: 'button', style: 'background-color: #4CAF50; border: none; color: white; padding: 12px 30px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 20px 0; cursor: pointer; border-radius: 5px; transition: background-color 0.3s ease;' %>
+  </div>
+<% end %>
+
+<script>
+  document.querySelector('form').addEventListener('submit', function() {
+    // Strip the "Prefix:", "Question:", and "Suffix:" labels before setting the hidden fields
+    document.getElementById('prefix-field').value = document.getElementById('prefix-preview').textContent.replace("Prefix:", "").trim();
+    document.getElementById('question-field').value = document.getElementById('question-preview').textContent.replace("Question:", "").trim();
+    document.getElementById('suffix-field').value = document.getElementById('suffix-preview').textContent.replace("Suffix:", "").trim();
+  });
+</script>
