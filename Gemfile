@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.1.2"
+ruby "3.3.4"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
@@ -88,5 +88,9 @@ end
 
 gem 'razorpay'
   # gem 'razorpay', '~> 3.2.2'
+gem 'httparty'
+gem 'ruby-openai'
+gem 'openai'
+gem 'arctic_admin'
 
 
