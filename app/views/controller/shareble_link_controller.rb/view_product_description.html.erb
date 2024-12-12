@@ -1,0 +1,34 @@
+<script type="text/javascript">
+  (function() {
+    var appOpened = false;
+
+    var app = {
+        launchApp: function() {
+          var deepLink = "<%= @data %>?t=" + new Date().getTime();
+
+          window.location.href = deepLink;
+
+        // Wait and check if the app opened, fallback to app store if it didn't
+          setTimeout(function() {
+            if (!appOpened) {
+              app.openWebApp();
+            }
+          }, 5000);
+        },
+
+      openWebApp: function() {
+        if (!appOpened) {
+          try {
+            console.log("Opening Web App:", "<%= @store_url %>"); 
+            window.location.href = "https://play.google.com/";
+          } catch (e) {
+            console.error("Error opening web app: " + e.message);
+          }
+        }
+      }
+    };
+
+    app.launchApp();
+
+  })();
+</script>
