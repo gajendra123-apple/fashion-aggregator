@@ -21,7 +21,11 @@ class UsersController < ApplicationController
           render json: { message: "User with email not found" }, status: :not_found
         elsif user.password == params[:user]['password']
           token = encode_data({ user_data: user.id })
-          render json: { user: user, token: token }
+          render json: { 
+            user: UserSerializer.new(user), 
+            token: token 
+            }, status: :ok
+          # render json: { user: user, token: token }
         else
           render json: { message: "Wrong password" }, status: :unprocessable_entity
         end
@@ -80,8 +84,12 @@ class UsersController < ApplicationController
   
   
     def success_response(user)
-      render json: {user: user}
-    end
+      # render json: {user: user}
+      render json: { 
+        user: UserSerializer.new(user), 
+        message: "User successfully registered"
+        }, status: :ok
+      end
   
     def faliour_respone(message, status = :unprocessable_entity)
       render json: { error: message }, status: status

@@ -38,7 +38,7 @@ module Authentication
   private
 
   def secret_key
-    ENV['SECRET_KEY']
+    ENV['SECRET_KEY'] || "0babdbb27438e216543949aba81c29c0bb830ba79f628578f9254ad2088ee7c38dab31a31790aa747326c0a231c774093ce77eacb1d62d5ea57f1b5fe1a97346"
   end
 
   def authenticate_user
