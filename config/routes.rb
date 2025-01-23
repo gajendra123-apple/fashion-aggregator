@@ -65,10 +65,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :razorpays, only: [:new, :create] do
+  resources :razorpays, only: [:new, :create, :index] do
     collection do
      post '/create_razorpay_order', to: 'razorpays#create_razorpay_order'
      post '/capture_payment', to: 'razorpays#capture_payment'
+     post 'create_razorpay_order'
     end
   end
  
