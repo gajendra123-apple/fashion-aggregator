@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 
 ruby "3.3.6"
+gem 'pg', group: :production  
+gem "sqlite3", "~> 1.4", group: [:development, :test] 
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -21,7 +23,7 @@ gem 'kaminari'
 # gem 'aws-sdk-rails'
 gem "aws-sdk-s3", require: false
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+# gem "sqlite3", "~> 1.4"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
