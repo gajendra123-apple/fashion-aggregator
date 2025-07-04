@@ -1,5 +1,5 @@
-module BxBlockCatalogue
-    class ShareCatalogueDescriptionsController < BxBlockCatalogue::ApplicationController
+# module BxBlockCatalogue
+    class ShareCatalogueDescriptionsController < ApplicationController
       # before_action :validate_json_web_token, only: :generate_catalogue_link
   
       def generate_catalogue_link
