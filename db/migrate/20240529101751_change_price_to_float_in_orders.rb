@@ -6,5 +6,4 @@ class ChangePriceToFloatInOrders < ActiveRecord::Migration[7.1]
       puts "🛑 Skipping: 'price' column not found in 'orders' table"
     end
   end
-  end
 end
