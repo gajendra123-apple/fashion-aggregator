@@ -1,9 +1,15 @@
-begin
-  AdminUser.find_or_create_by!(email: 'admin@example.com') do |user|
-    user.password = 'password'
-    user.password_confirmation = 'password'
+namespace :admin do
+  desc "Create an AdminUser"
+  task create: :environment do
+    begin
+      puts "⏳ Trying to create AdminUser..."
+      AdminUser.find_or_create_by!(email: 'admin@example.com') do |user|
+        user.password = 'password'
+        user.password_confirmation = 'password'
+      end
+      puts "✅ AdminUser created"
+    rescue => e
+      puts "❌ Failed to create admin user: #{e.message}"
+    end
   end
-  puts "✅ adminuser created"
-rescue => e
-  puts "❌ Failed to create admin user: #{e.message}"
 end
