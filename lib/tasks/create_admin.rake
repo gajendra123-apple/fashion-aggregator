@@ -3,7 +3,7 @@ begin
     user.password = 'password'
     user.password_confirmation = 'password'
   end
-  puts "✅ AdminUser created"
+  puts "✅ adminuser created"
 rescue => e
   puts "❌ Failed to create admin user: #{e.message}"
 end
