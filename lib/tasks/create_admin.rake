@@ -2,6 +2,7 @@ namespace :admin do
   desc "Create an AdminUser"
   task create: :environment do
     begin
+      puts "⏳ Trying to create AdminUser..."
       AdminUser.find_or_create_by!(email: 'admin@example.com') do |user|
         user.password = 'password'
         user.password_confirmation = 'password'

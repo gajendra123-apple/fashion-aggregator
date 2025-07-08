@@ -9,32 +9,51 @@ Rails.application.configure do
   config.assets.compile = true
   config.force_ssl = true
 
-  # ⚙️ Logger: Output to both STDOUT and production.log
-  logfile = ActiveSupport::Logger.new(Rails.root.join("log/production.log"))
-  logfile.formatter = Logger::Formatter.new
+  # ✅ Logger setup: Write to both STDOUT and production.log
+  log_file = File.open(Rails.root.join("log/production.log"), 'a')
+  log_file.sync = true
 
-  stdout_logger = ActiveSupport::Logger.new(STDOUT)
+  file_logger = Logger.new(log_file)
+  stdout_logger = Logger.new(STDOUT)
+
+  file_logger.formatter = Logger::Formatter.new
   stdout_logger.formatter = Logger::Formatter.new
 
-  combined_logger = ActiveSupport::Logger.new(stdout_logger)
-  combined_logger.extend(ActiveSupport::Logger.broadcast(logfile))
+  # MultiIO to write to both
+  class MultiIO
+    def initialize(*targets)
+      @targets = targets
+    end
 
-  config.logger = ActiveSupport::TaggedLogging.new(combined_logger)
+    def write(*args)
+      @targets.each { |t| t.write(*args) }
+    end
 
-  config.log_tags = [ :request_id ]
+    def close
+      @targets.each(&:close)
+    end
+
+    def flush
+      @targets.each(&:flush)
+    end
+  end
+
+  multi_logger = Logger.new(MultiIO.new(stdout_logger, file_logger))
+  multi_logger.formatter = Logger::Formatter.new
+  config.logger = ActiveSupport::TaggedLogging.new(multi_logger)
+
+  config.log_tags = [:request_id]
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
+  # ✅ Active Storage
   config.active_storage.service = :amazon
+# name
+  # ✅ Action Mailer
   config.action_mailer.perform_caching = false
-  config.i18n.fallbacks = true
-  config.active_record.dump_schema_after_migration = false
-
   config.action_mailer.default_url_options = {
     host: 'ecommerce-application-wsic.onrender.com',
     protocol: 'https'
   }
-
-  config.action_controller.raise_on_missing_callback_actions = true
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -46,4 +65,9 @@ Rails.application.configure do
     authentication: 'plain',
     enable_starttls_auto: true
   }
+
+  # ✅ I18n and Schema
+  config.i18n.fallbacks = true
+  config.active_record.dump_schema_after_migration = false
+  config.action_controller.raise_on_missing_callback_actions = true
 end
