@@ -1,5 +1,9 @@
 class ChangePriceToFloatInOrders < ActiveRecord::Migration[7.1]
   def change
-    change_column :orders, :price, :float
+    if column_exists?(:orders, :price)
+      change_column :orders, :price, :float
+    else
+      puts "🛑 Skipping: 'price' column not found in 'orders' table"
+    end
   end
 end

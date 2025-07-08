@@ -33,3 +33,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+coverage/
+config/credentials.yml.enc.bak
+promtail-linux-amd64.zip
+promtail-linux-amd64.zip.1
