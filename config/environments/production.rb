@@ -47,7 +47,7 @@ Rails.application.configure do
 
   # ✅ Active Storage
   config.active_storage.service = :amazon
-
+# name
   # ✅ Action Mailer
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = {
