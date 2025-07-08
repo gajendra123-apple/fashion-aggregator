@@ -26,6 +26,8 @@ Rails.application.configure do
   file_logger.formatter = Logger::Formatter.new
 
   stdout_logger = ActiveSupport::Logger.new(STDOUT)
+  file_logger   = ActiveSupport::Logger.new(Rails.root.join("log/production.log"))
+
   stdout_logger.formatter = Logger::Formatter.new
 
   # Broadcast logs to both STDOUT and file
