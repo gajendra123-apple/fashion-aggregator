@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
+
+  let!(:user1) { create(:user) }
+  let!(:user2) { create(:user) }
+  let!(:subcategory) { create(:subcategory) }
+  let!(:product1) { create(:product, subcategory: subcategory) }
+  let(:cart) { create(:cart, user: user1) }
+  let!(:cart_item) { create(:cart_item, cart: cart, product: product1, quantity: 1) }
+
   describe "GET #index" do
     before do
       create_list(:category, 3)
@@ -15,7 +23,7 @@ RSpec.describe CategoriesController, type: :controller do
   describe "GET #filter_product_by_category" do
     before do
         @category_men = create(:category, category_type: 'men')
-        @subcategory_trouser = create(:Subcategory, name: 'trouser', category: @category_men)
+        @subcategory_trouser = create(:subcategory, name: 'trouser', category: @category_men)
         @product_men = create(:product, category: @category_men, subcategory: @subcategory_trouser)        
     end
     

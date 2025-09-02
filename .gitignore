@@ -34,6 +34,11 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 coverage/
+<<<<<<< Updated upstream
 config/credentials.yml.enc.bak
 promtail-linux-amd64.zip
 promtail-linux-amd64.zip.1
+=======
+*.zip
+promtail/
+>>>>>>> Stashed changes
