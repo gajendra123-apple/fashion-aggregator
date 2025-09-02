@@ -16,7 +16,6 @@ RSpec.describe CartsController, type: :controller do
   describe "GET #show" do
     it "returns a successful response" do
       get :show
-      byebug
       expect(response).to have_http_status(:ok)
     end
   end
