@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.2.9"
+ruby "3.3.6"
 gem 'pg', group: :production  
 gem "sqlite3", "~> 1.4", group: [:development, :test] 
 
