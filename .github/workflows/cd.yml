@@ -9,7 +9,6 @@ jobs:
 
     steps:
       - name: Deploy to Render
-        run: |
-          curl -X POST "$RENDER_DEPLOY_HOOK"
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
         env:
           RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
