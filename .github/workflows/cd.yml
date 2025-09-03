@@ -24,4 +24,5 @@ jobs:
 
       # Actual deploy step
       - name: Deploy to Render
-        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+        run: curl -X POST "$(echo -n "${{ secrets.RENDER_DEPLOY_HOOK }}" | tr -d '\n' | tr -d '\r')"
+
