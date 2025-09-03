@@ -3,11 +3,25 @@ name: CD
 on:
   push:
     branches: ["main"]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # Debug step - check if secret is passed
+      - name: Debug Render Hook
+        run: |
+          if [ -z "${RENDER_DEPLOY_HOOK}" ]; then
+            echo "❌ ERROR: Secret is empty!"
+            exit 1
+          else
+            echo "::add-mask::${RENDER_DEPLOY_HOOK}"
+            echo "✅ Secret is available and masked"
+          fi
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+
+      # Actual deploy step
       - name: Deploy to Render
         run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
-      
