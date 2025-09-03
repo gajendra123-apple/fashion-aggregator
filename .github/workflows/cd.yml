@@ -3,7 +3,7 @@ name: CD
 on:
   push:
     branches: ["main"]
-
+    workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -11,6 +11,6 @@ jobs:
     steps:
       - name: Deploy to Render
         run: |
-          curl "$RENDER_DEPLOY_HOOK"
+          curl -X POST "$RENDER_DEPLOY_HOOK"
         env:
           RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
